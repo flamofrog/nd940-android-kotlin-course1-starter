@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.udacity.shoestore.StoreFragment"
+        android:name="com.udacity.shoestore.store.StoreFragment"
         android:label="StoreFragment"
         tools:layout="@layout/fragment_store" />
 </navigation>
