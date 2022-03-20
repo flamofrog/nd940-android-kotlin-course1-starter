@@ -16,6 +16,8 @@ class InstructionsFragment : Fragment() {
         val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_instructions, container, false)
 
+        binding.continueButton.setOnClickListener { InstructionsFragmentDirections.actionInstructionsFragmentToStoreFragment() }
+
         return binding.root
     }
 }

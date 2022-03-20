@@ -9,7 +9,7 @@
         tools:context=".WelcomeFragment">
 
         <TextView
-            android:id="@+id/tv_welcome_title"
+            android:id="@+id/tv_placeholder"
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -11,5 +11,8 @@
     <string name="welcome_title">Hello,\nWelcome to The Shoe Store</string>
     <string name="welcome_exposition">Here you can browse and purchase shoes</string>
     <string name="welcome_continue">Continue…</string>
+    <string name="instructions_title">Instructions:</string>
+    <string name="instructions_info">Placeholder text</string>
+    <string name="instructions_goto_store">Go To Store</string>
 
 </resources>
