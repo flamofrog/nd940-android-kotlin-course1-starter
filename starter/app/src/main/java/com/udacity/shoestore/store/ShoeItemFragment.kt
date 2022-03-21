@@ -31,6 +31,8 @@ class ShoeItemFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ShoeViewModel::class.java)
         binding.shoeViewModel = viewModel
 
+
+
         viewModel.eventViewDetails.observe(viewLifecycleOwner, Observer { viewDetails ->
             if (viewDetails) {
                 findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment())
