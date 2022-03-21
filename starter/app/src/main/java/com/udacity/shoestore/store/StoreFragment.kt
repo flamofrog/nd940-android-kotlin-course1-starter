@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentStoreBinding
+import timber.log.Timber
 
 class StoreFragment : Fragment() {
 
@@ -28,6 +31,8 @@ class StoreFragment : Fragment() {
         binding.storeViewModel = viewModel
         binding.lifecycleOwner = this
 
+        viewModel = ViewModelProvider(this).get(StoreViewModel::class.java)
+        binding.lifecycleOwner = this
 
         return binding.root
     }

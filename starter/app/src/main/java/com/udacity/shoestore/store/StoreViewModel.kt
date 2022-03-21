@@ -12,11 +12,8 @@ class StoreViewModel : ViewModel() {
     val shoeList: LiveData<MutableList<Shoe>>
         get() = _shoeList
 
-
     init {
         createShoeList()
-
-        Timber.i("Shoes: ${shoeList.value.toString()}")
     }
 
     private fun createShoeList() {
