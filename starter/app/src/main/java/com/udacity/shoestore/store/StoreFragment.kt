@@ -14,16 +14,20 @@ import com.udacity.shoestore.databinding.FragmentStoreBinding
 class StoreFragment : Fragment() {
 
     private lateinit var viewModel: StoreViewModel
+    private lateinit var binding: FragmentStoreBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
-        val binding: FragmentStoreBinding = DataBindingUtil.inflate(
+        binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_store, container, false
         )
 
         viewModel = ViewModelProvider(this).get(StoreViewModel::class.java)
+        binding.storeViewModel = viewModel
+        binding.lifecycleOwner = this
+
 
         return binding.root
     }

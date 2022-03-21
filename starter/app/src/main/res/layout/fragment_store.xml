@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="StoreViewModel"
+            type="com.udacity.shoestore.store.StoreViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".store.StoreFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_placeholder"
-            style="@style/Title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="placeholder" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_placeholder"
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{StoreViewModel.shoeList.toString()}" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </layout>
