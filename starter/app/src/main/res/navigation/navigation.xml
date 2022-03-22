@@ -42,7 +42,9 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -63,7 +65,13 @@
     </fragment>
     <fragment
         android:id="@+id/shoeDetailFragment"
-        android:name="com.udacity.shoestore.store.ShoeDetailFragment"
+        android:name="com.udacity.shoestore.store.shoe.detail.ShoeDetailFragment"
         android:label="ShoeDetailFragment"
-        tools:layout="@layout/fragment_shoe_detail"/>
+        tools:layout="@layout/fragment_shoe_detail">
+        <action
+            android:id="@+id/action_shoeDetailFragment_to_storeFragment"
+            app:destination="@id/storeFragment"
+            app:popUpTo="@id/storeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
