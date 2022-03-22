@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="StoreViewModel"
             type="com.udacity.shoestore.store.StoreViewModel" />
@@ -14,24 +13,11 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/StoreLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContainerView"
-                android:name="com.udacity.shoestore.store.ShoeItemFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout="@layout/fragment_shoe_item"/>
-
-            <TextView
-                android:id="@+id/tv_placeholder"
-                style="@style/Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{StoreViewModel.shoeList.toString()}" />
 
         </LinearLayout>
     </ScrollView>
