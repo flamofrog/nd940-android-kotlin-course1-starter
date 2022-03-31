@@ -68,10 +68,10 @@
         android:name="com.udacity.shoestore.store.shoe.detail.ShoeDetailFragment"
         android:label="ShoeDetailFragment"
         tools:layout="@layout/fragment_shoe_detail">
-        <action
-            android:id="@+id/action_shoeDetailFragment_to_storeFragment"
-            app:destination="@id/storeFragment"
-            app:popUpTo="@id/storeFragment"
-            app:popUpToInclusive="true" />
+        <argument android:name="shoe"
+            app:argType="com.udacity.shoestore.models.Shoe" />
+        <argument
+            android:name="shoeIndex"
+            app:argType="integer" />
     </fragment>
 </navigation>

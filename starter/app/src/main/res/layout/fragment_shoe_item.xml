@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="shoeViewModel"
-            type="com.udacity.shoestore.store.shoe.ShoeViewModel" />
+            name="storeViewModel"
+            type="com.udacity.shoestore.store.StoreViewModel" />
+
+        <variable
+            name="index"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,10 +21,10 @@
 
 
         <TextView
-            android:id="@+id/shoe_brand"
+            android:id="@+id/shoe_company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{shoeViewModel.company}"
+            android:text="@{storeViewModel.shoeList[index].company}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,23 +36,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{String.valueOf(shoeViewModel.size)}"
+            android:text="@{String.valueOf(storeViewModel.shoeList[index].size)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.04"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shoe_brand"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_company"
             tools:text="7.5" />
 
         <TextView
-            android:id="@+id/shoe_name"
+            android:id="@+id/name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{shoeViewModel.name}"
+            android:text="@{storeViewModel.shoeList[index].name}"
             app:layout_constraintHorizontal_bias="0.423"
             app:layout_constraintStart_toEndOf="@+id/shoe_size"
-            app:layout_constraintTop_toBottomOf="@+id/shoe_brand"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_company"
             tools:text="Air Jordans 1" />
 
         <Button
@@ -56,11 +60,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:onClick="@{() -> shoeViewModel.onViewDetails()}"
             android:text="@string/shoe_see_details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shoe_brand" />
+            app:layout_constraintTop_toBottomOf="@+id/shoe_company"
+            android:onClick="@{() -> storeViewModel.onViewDetails(index)}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
