@@ -64,7 +64,11 @@
             app:popExitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_storeFragment_to_shoeCreateFragment"
-            app:destination="@id/shoeCreateFragment" />
+            app:destination="@id/shoeCreateFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailFragment"
