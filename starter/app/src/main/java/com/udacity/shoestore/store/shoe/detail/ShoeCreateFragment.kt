@@ -11,20 +11,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
 import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.store.StoreViewModel
 import timber.log.Timber
 
-class ShoeDetailFragment : Fragment() {
+class ShoeCreateFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailBinding
     private lateinit var viewModel: ShoeDetailViewModel
     private val storeViewModel: StoreViewModel by activityViewModels()
-
-    private lateinit var shoe: Shoe
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,25 +35,24 @@ class ShoeDetailFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
 
-        val shoeFragmentArgs by navArgs<ShoeDetailFragmentArgs>()
-        shoe = shoeFragmentArgs.shoe
-
-        viewModel.setupShoe(shoe)
+        viewModel.setupShoe()
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
 
         viewModel.eventOnSave.observe(viewLifecycleOwner, Observer { onSave ->
             Timber.i("Observed On Save")
             if (onSave) {
                 Timber.i("Saving!")
                 try {
-                    shoe.name = binding.nameEdit.text.toString()
-                    shoe.company = binding.companyEdit.text.toString()
-                    shoe.size = binding.sizeEdit.text.toString().toDouble()
-                    shoe.description = binding.descriptionEdit.text.toString()
-                    storeViewModel.updateShoe(shoe, shoeFragmentArgs.shoeIndex)
+                    val shoe = Shoe(
+                        binding.nameEdit.text.toString(),
+                        binding.sizeEdit.text.toString().toDouble(),
+                        binding.companyEdit.text.toString(),
+                        binding.descriptionEdit.text.toString(),
+                        mutableListOf<String>("")
+                    )
+                    storeViewModel.addShoe(shoe)
                     Toast.makeText(context, "Shoe saved successfully!.", Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp()
                 } catch (e: Exception) {

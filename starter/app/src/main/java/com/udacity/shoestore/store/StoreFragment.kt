@@ -32,28 +32,38 @@ class StoreFragment : Fragment() {
         binding.storeViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.shoeList.value?.forEachIndexed { idx, shoe ->
-            Timber.i("Shoe: $shoe")
-            val shoeItemBinding: FragmentShoeItemBinding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_item, container, false)
 
-            viewModel.eventViewDetails.observe(viewLifecycleOwner, Observer { viewDetails ->
-                if (viewDetails) {
-                    val idx = viewModel.shoeIndexToView
-                    val selectedShoe = viewModel.getShoeAtIndex(idx)
-                    selectedShoe?.let {
-                        findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment(selectedShoe, idx))
-                    }
-                    viewModel.onViewDetailsComplete()
+        // Inflate list of shoes
+        viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoeList ->
+            shoeList.forEachIndexed { idx, shoe ->
+                Timber.i("Shoe: $shoe")
+                val shoeItemBinding: FragmentShoeItemBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_item, container, false)
+                shoeItemBinding.storeViewModel = viewModel
+                shoeItemBinding.index = idx
+
+                binding.StoreLinearLayout.addView(shoeItemBinding.root)
+            }
+        })
+
+        // Listen for on clicks for viewing details
+        viewModel.eventViewDetails.observe(viewLifecycleOwner, Observer { viewDetails ->
+            if (viewDetails) {
+                val index = viewModel.shoeIndexToView
+                val selectedShoe = viewModel.getShoeAtIndex(index)
+                selectedShoe?.let {
+                    findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment(selectedShoe, index))
                 }
-            })
+                viewModel.onViewDetailsComplete()
+            }
+        })
 
-            shoeItemBinding.storeViewModel = viewModel
-            shoeItemBinding.index = idx
-
-            binding.StoreLinearLayout.addView(shoeItemBinding.root)
-        }
-
+        // Listen for on clicks for creating a new shoe
+        viewModel.eventCreateShoe.observe(viewLifecycleOwner, Observer { createShoe ->
+            if (createShoe) {
+                findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeCreateFragment())
+                viewModel.onCreateShoeComplete()
+            }
+        })
         return binding.root
     }
 }

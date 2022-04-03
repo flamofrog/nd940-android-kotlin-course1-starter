@@ -37,6 +37,13 @@ class ShoeDetailViewModel : ViewModel() {
         it.toString()
     }
 
+    fun setupShoe() {
+        _name.value = ""
+        _company.value = ""
+        _size.value = 0.0
+        _description.value = ""
+    }
+
     fun setupShoe(shoe: Shoe) {
         shoe.apply {
             _name.value = name
