@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.udacity.shoestore.LoginFragment"
-        android:label="LoginFragment"
+        android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_welcomeFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.udacity.shoestore.WelcomeFragment"
-        android:label="fragment_welcome"
+        android:label="Welcome"
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_instructionsFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/instructionsFragment"
         android:name="com.udacity.shoestore.InstructionsFragment"
-        android:label="InstructionsFragment"
+        android:label="Instructions"
         tools:layout="@layout/fragment_instructions">
         <action
             android:id="@+id/action_instructionsFragment_to_storeFragment"
@@ -49,12 +49,12 @@
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.udacity.shoestore.store.StoreFragment"
-        android:label="StoreFragment"
-        tools:layout="@layout/fragment_store"
+        android:label="Store"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right">
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_store">
         <action
             android:id="@+id/action_storeFragment_to_shoeDetailFragment"
             app:destination="@id/shoeDetailFragment"
@@ -66,9 +66,10 @@
     <fragment
         android:id="@+id/shoeDetailFragment"
         android:name="com.udacity.shoestore.store.shoe.detail.ShoeDetailFragment"
-        android:label="ShoeDetailFragment"
+        android:label="Shoe Detail"
         tools:layout="@layout/fragment_shoe_detail">
-        <argument android:name="shoe"
+        <argument
+            android:name="shoe"
             app:argType="com.udacity.shoestore.models.Shoe" />
         <argument
             android:name="shoeIndex"
