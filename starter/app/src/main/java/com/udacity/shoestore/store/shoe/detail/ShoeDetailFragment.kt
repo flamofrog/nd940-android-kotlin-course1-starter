@@ -72,35 +72,12 @@ class ShoeDetailFragment : Fragment() {
 
         viewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
             Timber.i("Observed On Return")
-//            if (!unsavedChanges()) {
             if (onReturn) {
                 Timber.i("Returning!")
                 viewModel.onReturnComplete()
-
-
-
                 findNavController().navigateUp()
             }
-//            } else {
-//                Timber.i("there are unsaved changes") // TODO: Show dialog
-//            }
-
         })
         return binding.root
-    }
-
-    private fun unsavedChanges(): Boolean {
-        return when {
-            viewModel.name.value != shoe.name -> {
-                true
-            }
-            viewModel.company.value != shoe.company -> {
-                true
-            }
-            viewModel.size.value != shoe.size -> {
-                true
-            }
-            else -> viewModel.description.value != shoe.description
-        }
     }
 }
