@@ -64,13 +64,41 @@ class StoreViewModel : ViewModel() {
     private fun createShoeList() {
         _shoeList.value = mutableListOf<Shoe>(
             Shoe(
-                "Example Shoe", 7.5, "Example Company", "A wearable shoe",
+                "Air Jordan 1", 7.5, "Nike", "A wearable shoe",
                 listOf<String>("Img1", "Img2")
             ),
             Shoe(
-                "Second Shoe", 6.0, "Another Company", "A wearable shoe",
+                "Air Jordan 2", 5.5, "Nike", "A wearable shoe",
                 listOf<String>("Img1", "Img2")
-            )
+            ),
+            Shoe(
+                "Air Jordan 3", 7.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 4", 9.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 5", 7.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 6", 10.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 7", 5.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 8", 8.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
+            Shoe(
+                "Air Jordan 10", 7.5, "Nike", "A wearable shoe",
+                listOf<String>("Img1", "Img2")
+            ),
         )
     }
 
