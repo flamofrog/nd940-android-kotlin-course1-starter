@@ -28,4 +28,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ShoeCompany">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ShoeSize">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
 </resources>
