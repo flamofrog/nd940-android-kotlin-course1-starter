@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeItemBinding
@@ -16,7 +16,7 @@ import timber.log.Timber
 
 class StoreFragment : Fragment() {
 
-    private lateinit var viewModel: StoreViewModel
+    private val viewModel: StoreViewModel by activityViewModels()
     private lateinit var binding: FragmentStoreBinding
 
     override fun onCreateView(
@@ -29,7 +29,6 @@ class StoreFragment : Fragment() {
             inflater, R.layout.fragment_store, container, false
         )
 
-        viewModel = ViewModelProvider(this).get(StoreViewModel::class.java)
         binding.storeViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -43,9 +42,7 @@ class StoreFragment : Fragment() {
                     val idx = viewModel.shoeIndexToView
                     val selectedShoe = viewModel.getShoeAtIndex(idx)
                     selectedShoe?.let {
-                        findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment(
-                            selectedShoe, idx
-                        ))
+                        findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment(selectedShoe, idx))
                     }
                     viewModel.onViewDetailsComplete()
                 }

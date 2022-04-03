@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -21,7 +22,7 @@ class ShoeDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailBinding
     private lateinit var viewModel: ShoeDetailViewModel
-    private lateinit var storeViewModel: StoreViewModel
+    private val storeViewModel: StoreViewModel by activityViewModels()
 
     private lateinit var shoe: Shoe
 
@@ -36,8 +37,6 @@ class ShoeDetailFragment : Fragment() {
         )
 
         viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
-        storeViewModel = ViewModelProvider(this).get(StoreViewModel::class.java)
-
 
         val shoeFragmentArgs by navArgs<ShoeDetailFragmentArgs>()
         shoe = shoeFragmentArgs.shoe
@@ -58,12 +57,10 @@ class ShoeDetailFragment : Fragment() {
                     shoe.size = binding.sizeEdit.text.toString().toDouble()
                     shoe.description = binding.descriptionEdit.text.toString()
                     storeViewModel.updateShoe(shoeFragmentArgs.shoeIndex, shoe)
+                    Toast.makeText(context, "Shoe saved successfully!.", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
                 } catch (e: Exception) {
-                    Toast.makeText(
-                        context,
-                        "An error occurred whilst saving the shoe.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(context, "An error occurred whilst saving the shoe.", Toast.LENGTH_SHORT).show()
                 }
                 viewModel.onSaveComplete()
             }
