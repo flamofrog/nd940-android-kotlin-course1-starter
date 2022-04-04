@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="storeViewModel"
+            type="com.udacity.shoestore.store.StoreViewModel" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/shoe_size"
+            style="@style/ShoeSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{String.valueOf(storeViewModel.shoeList[index].size)}"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/shoe_company"
+            app:layout_constraintTop_toTopOf="@+id/shoe_company"
+            tools:text="7.5" />
+
+        <TextView
+            android:id="@+id/shoe_company"
+            style="@style/ShoeCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{storeViewModel.shoeList[index].company}"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_title"
+            tools:text="Nike" />
+
+        <TextView
+            android:id="@+id/shoe_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"
+            android:singleLine="true"
+            android:text="@{String.valueOf(storeViewModel.shoeList[index].description)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/see_detail_button"
+            app:layout_constraintStart_toStartOf="@+id/shoe_company"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_company"
+            tools:text="This is a shoe and this message is very long so it won't fit if I continue to type even more" />
+
+        <TextView
+            android:id="@+id/name_title"
+            style="@style/Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{storeViewModel.shoeList[index].name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Air Jordans 1" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/see_detail_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> storeViewModel.onViewDetails(index)}"
+            android:src="@drawable/ic_edit"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/shoe_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

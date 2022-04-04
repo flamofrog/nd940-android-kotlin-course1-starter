@@ -16,4 +16,31 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Title">
+        <item name="android:textSize">40sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Subtitle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LargeText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
+    <style name="ShoeCompany">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ShoeSize">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
 </resources>
