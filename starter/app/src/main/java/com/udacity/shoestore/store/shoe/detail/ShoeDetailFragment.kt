@@ -21,7 +21,6 @@ import timber.log.Timber
 class ShoeDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailBinding
-    private lateinit var viewModel: ShoeDetailViewModel
     private val storeViewModel: StoreViewModel by activityViewModels()
 
     private lateinit var shoe: Shoe
@@ -32,22 +31,15 @@ class ShoeDetailFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_shoe_detail, container, false
-        )
-
-        viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shoe_detail, container, false)
 
         val shoeFragmentArgs by navArgs<ShoeDetailFragmentArgs>()
         shoe = shoeFragmentArgs.shoe
 
-        viewModel.setupShoe(shoe)
-
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        binding.viewModel = storeViewModel
 
-
-        viewModel.eventOnSave.observe(viewLifecycleOwner, Observer { onSave ->
+        storeViewModel.eventSaveShoe.observe(viewLifecycleOwner, Observer { onSave ->
             Timber.i("Observed On Save")
             if (onSave) {
                 Timber.i("Saving!")
@@ -62,16 +54,15 @@ class ShoeDetailFragment : Fragment() {
                 } catch (e: Exception) {
                     Toast.makeText(context, "An error occurred whilst saving the shoe.", Toast.LENGTH_SHORT).show()
                 }
-                viewModel.onSaveComplete()
+                storeViewModel.onSaveComplete()
             }
-
         })
 
-        viewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
+        storeViewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
             Timber.i("Observed On Return")
             if (onReturn) {
                 Timber.i("Returning!")
-                viewModel.onReturnComplete()
+                storeViewModel.onReturnComplete()
                 findNavController().navigateUp()
             }
         })

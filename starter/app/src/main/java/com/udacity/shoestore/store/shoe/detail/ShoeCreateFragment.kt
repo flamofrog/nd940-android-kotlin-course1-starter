@@ -20,7 +20,6 @@ import timber.log.Timber
 class ShoeCreateFragment : Fragment() {
 
     private lateinit var binding: FragmentShoeDetailBinding
-    private lateinit var viewModel: ShoeDetailViewModel
     private val storeViewModel: StoreViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -33,14 +32,10 @@ class ShoeCreateFragment : Fragment() {
             inflater, R.layout.fragment_shoe_detail, container, false
         )
 
-        viewModel = ViewModelProvider(this).get(ShoeDetailViewModel::class.java)
-
-        viewModel.setupShoe()
-
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        binding.viewModel = storeViewModel
 
-        viewModel.eventOnSave.observe(viewLifecycleOwner, Observer { onSave ->
+        storeViewModel.eventSaveShoe.observe(viewLifecycleOwner, Observer { onSave ->
             Timber.i("Observed On Save")
             if (onSave) {
                 Timber.i("Saving!")
@@ -58,16 +53,16 @@ class ShoeCreateFragment : Fragment() {
                 } catch (e: Exception) {
                     Toast.makeText(context, "An error occurred whilst saving the shoe.", Toast.LENGTH_SHORT).show()
                 }
-                viewModel.onSaveComplete()
+                storeViewModel.onSaveComplete()
             }
 
         })
 
-        viewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
+        storeViewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
             Timber.i("Observed On Return")
             if (onReturn) {
                 Timber.i("Returning!")
-                viewModel.onReturnComplete()
+                storeViewModel.onReturnComplete()
                 findNavController().navigateUp()
             }
         })

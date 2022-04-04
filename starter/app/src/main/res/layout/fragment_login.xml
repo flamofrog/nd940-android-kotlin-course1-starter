@@ -35,11 +35,12 @@
 
             <TextView
                 android:id="@+id/tvLabelEmail"
+                style="@style/Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email_input_label" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTextEmailAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -51,6 +52,7 @@
 
             <TextView
                 android:id="@+id/tvLabelPassword"
+                style="@style/Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/password_input_label" />
@@ -74,14 +76,14 @@
 
                 <Button
                     android:id="@+id/login_button"
-                    style="?android:attr/buttonBarButtonStyle"
+                    style="?android:attr/buttonBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login_button" />
 
                 <Button
                     android:id="@+id/register_button"
-                    style="?android:attr/buttonBarButtonStyle"
+                    style="?android:attr/buttonBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/register_button" />

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.udacity.shoestore.store.shoe.detail.ShoeDetailViewModel" />
+            type="com.udacity.shoestore.store.StoreViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,7 +86,7 @@
                     android:ems="10"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.name}"
+                    android:text="@{viewModel.selectedShoe.name}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/name_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Air Jordan 1" />
@@ -99,7 +99,7 @@
                     android:ems="10"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.company}"
+                    android:text="@{viewModel.selectedShoe.company}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/company_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Nike" />
@@ -112,7 +112,7 @@
                     android:ems="10"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.sizeString}"
+                    android:text="@{viewModel.selectedShoeSizeString}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/size_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="DuplicateSpeakableTextCheck"
@@ -129,7 +129,7 @@
                     android:gravity="top"
                     android:inputType="textMultiLine"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.description}"
+                    android:text="@{viewModel.selectedShoe.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/description_title"
@@ -139,6 +139,7 @@
 
         <Button
             android:id="@+id/return_button"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -154,6 +155,7 @@
 
         <Button
             android:id="@+id/save_button"
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"

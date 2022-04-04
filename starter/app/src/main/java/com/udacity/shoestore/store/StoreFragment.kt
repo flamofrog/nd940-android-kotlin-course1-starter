@@ -48,8 +48,8 @@ class StoreFragment : Fragment() {
         // Listen for on clicks for viewing details
         viewModel.eventViewDetails.observe(viewLifecycleOwner, Observer { viewDetails ->
             if (viewDetails) {
-                val index = viewModel.shoeIndexToView
-                val selectedShoe = viewModel.getShoeAtIndex(index)
+                val selectedShoe = viewModel.selectedShoe.value
+                val index = viewModel.selectedShoeIndex
                 selectedShoe?.let {
                     findNavController().navigate(StoreFragmentDirections.actionStoreFragmentToShoeDetailFragment(selectedShoe, index))
                 }
