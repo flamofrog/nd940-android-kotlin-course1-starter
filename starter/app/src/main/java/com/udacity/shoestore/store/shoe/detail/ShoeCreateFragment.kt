@@ -39,17 +39,10 @@ class ShoeCreateFragment : Fragment() {
             Timber.i("Observed On Save")
             if (onSave) {
                 Timber.i("Saving!")
-                if (binding.sizeEdit.text.isNullOrBlank()) {
-                    Toast.makeText(context, "You must specify a size", Toast.LENGTH_SHORT).show()
+                if (storeViewModel.anyFieldsBlank()) {
+                    Toast.makeText(context, "Some fields are blank or shoe size is 0.", Toast.LENGTH_SHORT).show()
                 } else {
-                    val shoe = Shoe(
-                        binding.nameEdit.text.toString(),
-                        binding.sizeEdit.text.toString().toDouble(),
-                        binding.companyEdit.text.toString(),
-                        binding.descriptionEdit.text.toString(),
-                        mutableListOf<String>("")
-                    )
-                    storeViewModel.addShoe(shoe)
+                    storeViewModel.selectedShoe.value?.let { storeViewModel.addShoe(it) }
                     Toast.makeText(context, "Shoe saved successfully!.", Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp()
                 }

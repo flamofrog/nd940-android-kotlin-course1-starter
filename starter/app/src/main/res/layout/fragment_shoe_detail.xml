@@ -86,7 +86,7 @@
                     android:ems="10"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.selectedShoe.name}"
+                    android:text="@={viewModel.selectedShoe.name}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/name_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Air Jordan 1" />
@@ -99,7 +99,7 @@
                     android:ems="10"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.selectedShoe.company}"
+                    android:text="@={viewModel.selectedShoe.company}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/company_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="Nike" />
@@ -112,7 +112,7 @@
                     android:ems="10"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.selectedShoeSizeString}"
+                    android:text='@={""+viewModel.selectedShoe.size}'
                     app:layout_constraintBaseline_toBaselineOf="@+id/size_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="DuplicateSpeakableTextCheck"
@@ -129,7 +129,7 @@
                     android:gravity="top"
                     android:inputType="textMultiLine"
                     android:minHeight="48dp"
-                    android:text="@{viewModel.selectedShoe.description}"
+                    android:text="@={viewModel.selectedShoe.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/description_title"

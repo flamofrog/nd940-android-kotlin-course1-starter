@@ -9,6 +9,7 @@
             type="com.udacity.shoestore.store.StoreViewModel" />
     </data>
 
+<!--Constraint layout used to center content -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,13 +25,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <!--Vertical linear layout which will contain each shoe item-->
             <LinearLayout
                 android:id="@+id/StoreLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="60dp">
-
 
             </LinearLayout>
         </ScrollView>
