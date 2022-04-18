@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class StoreViewModel : ViewModel() {
 
-
+    private val _blankShoe = Shoe("", 0.0, "", "" ,listOf(""))
 
     private val _shoeList = MutableLiveData<MutableList<Shoe>>()
     val shoeList: LiveData<MutableList<Shoe>>
@@ -17,12 +17,9 @@ class StoreViewModel : ViewModel() {
 
     var selectedShoeIndex: Int = -1
 
-    private val _selectedShoe = MutableLiveData<Shoe>()
-    val selectedShoe: LiveData<Shoe>
+    private val _selectedShoe = MutableLiveData<Shoe?>()
+    val selectedShoe: LiveData<Shoe?>
         get() = _selectedShoe
-    val selectedShoeSizeString = Transformations.map(selectedShoe) {
-        it.size.toString()
-    }
 
     private val _eventOnReturn = MutableLiveData<Boolean>()
     val eventOnReturn: LiveData<Boolean>
@@ -46,11 +43,14 @@ class StoreViewModel : ViewModel() {
     }
 
     fun addShoe(shoe: Shoe) {
+        Timber.i("adding shoe: $shoe")
         _shoeList.value?.add(shoe)
     }
 
-    fun updateShoe(shoe: Shoe, idx: Int) {
-        _shoeList.value?.set(idx, shoe)
+    fun updateShoe(idx: Int) {
+        _selectedShoe.value?.let {
+            _shoeList.value?.set(idx, it)
+        }
     }
 
     fun onSave() {
@@ -62,17 +62,19 @@ class StoreViewModel : ViewModel() {
     }
 
     fun onReturn() {
-        Timber.i("OnReturn")
         _eventOnReturn.value = true
+        _selectedShoe.value = _blankShoe
     }
 
     fun onReturnComplete() {
-        Timber.i("OnReturnComplete")
         _eventOnReturn.value = false
     }
 
     fun onViewDetails(deviceIndex: Int) {
-        _selectedShoe.value = _shoeList.value?.get(deviceIndex)
+        _shoeList.value?.get(deviceIndex)?.let {
+            val shoe: Shoe = it
+            _selectedShoe.value = shoe.copy()
+        }
         selectedShoeIndex = deviceIndex
         _eventViewDetails.value = true
     }
@@ -87,12 +89,30 @@ class StoreViewModel : ViewModel() {
     }
 
     fun onCreateShoe() {
-        Timber.i("Create Shoe clicked!")
+        _selectedShoe.value = _blankShoe
         _eventCreateShoe.value = true
     }
 
     fun onCreateShoeComplete() {
         _eventCreateShoe.value = false
+    }
+
+    fun anyFieldsBlank(): Boolean {
+        selectedShoe.value?.let {
+            if (it.name.isBlank()) {
+                return true
+            }
+            if (it.company.isBlank()) {
+                return true
+            }
+            if (it.size.isNaN() || it.size == 0.0) {
+                return true
+            }
+            if (it.description.isBlank()) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun createShoeList() {

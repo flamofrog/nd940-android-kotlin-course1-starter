@@ -15,6 +15,7 @@
             type="Integer" />
     </data>
 
+    <!--As this is a complicated layout a constraint layout makes more sense to use here than a linear layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -78,9 +79,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorPrimary"
             android:onClick="@{() -> storeViewModel.onViewDetails(index)}"
             android:src="@drawable/ic_edit"
-            android:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toTopOf="@+id/shoe_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

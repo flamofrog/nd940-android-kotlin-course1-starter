@@ -23,4 +23,6 @@
     <string name="shoe_size_title">Size:</string>
     <string name="shoe_description_title">Description:</string>
 
+    <string name="menu_logout">Logout</string>
+
 </resources>

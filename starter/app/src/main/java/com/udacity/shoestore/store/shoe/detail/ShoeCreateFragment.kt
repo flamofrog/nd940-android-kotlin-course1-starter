@@ -39,19 +39,12 @@ class ShoeCreateFragment : Fragment() {
             Timber.i("Observed On Save")
             if (onSave) {
                 Timber.i("Saving!")
-                try {
-                    val shoe = Shoe(
-                        binding.nameEdit.text.toString(),
-                        binding.sizeEdit.text.toString().toDouble(),
-                        binding.companyEdit.text.toString(),
-                        binding.descriptionEdit.text.toString(),
-                        mutableListOf<String>("")
-                    )
-                    storeViewModel.addShoe(shoe)
+                if (storeViewModel.anyFieldsBlank()) {
+                    Toast.makeText(context, "Some fields are blank or shoe size is 0.", Toast.LENGTH_SHORT).show()
+                } else {
+                    storeViewModel.selectedShoe.value?.let { storeViewModel.addShoe(it) }
                     Toast.makeText(context, "Shoe saved successfully!.", Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp()
-                } catch (e: Exception) {
-                    Toast.makeText(context, "An error occurred whilst saving the shoe.", Toast.LENGTH_SHORT).show()
                 }
                 storeViewModel.onSaveComplete()
             }
