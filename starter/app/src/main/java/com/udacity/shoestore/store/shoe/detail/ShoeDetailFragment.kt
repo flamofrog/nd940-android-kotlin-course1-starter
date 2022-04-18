@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
@@ -42,8 +41,11 @@ class ShoeDetailFragment : Fragment() {
         storeViewModel.eventSaveShoe.observe(viewLifecycleOwner, Observer { onSave ->
             Timber.i("Observed On Save")
             if (onSave) {
+                storeViewModel.onSaveComplete()
                 Timber.i("Saving!")
-                try {
+                if (binding.sizeEdit.text.isNullOrBlank()) {
+                    Toast.makeText(context, "You must specify a size", Toast.LENGTH_SHORT).show()
+                } else {
                     shoe.name = binding.nameEdit.text.toString()
                     shoe.company = binding.companyEdit.text.toString()
                     shoe.size = binding.sizeEdit.text.toString().toDouble()
@@ -51,18 +53,15 @@ class ShoeDetailFragment : Fragment() {
                     storeViewModel.updateShoe(shoe, shoeFragmentArgs.shoeIndex)
                     Toast.makeText(context, "Shoe saved successfully!.", Toast.LENGTH_SHORT).show()
                     findNavController().navigateUp()
-                } catch (e: Exception) {
-                    Toast.makeText(context, "An error occurred whilst saving the shoe.", Toast.LENGTH_SHORT).show()
                 }
-                storeViewModel.onSaveComplete()
             }
         })
 
         storeViewModel.eventOnReturn.observe(viewLifecycleOwner, Observer { onReturn ->
             Timber.i("Observed On Return")
             if (onReturn) {
-                Timber.i("Returning!")
                 storeViewModel.onReturnComplete()
+                Timber.i("Returning!")
                 findNavController().navigateUp()
             }
         })

@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class StoreViewModel : ViewModel() {
 
-
+//    private val blankShoe = Shoe("", 0.0, "", "" ,listOf(""))
 
     private val _shoeList = MutableLiveData<MutableList<Shoe>>()
     val shoeList: LiveData<MutableList<Shoe>>
@@ -17,11 +17,11 @@ class StoreViewModel : ViewModel() {
 
     var selectedShoeIndex: Int = -1
 
-    private val _selectedShoe = MutableLiveData<Shoe>()
-    val selectedShoe: LiveData<Shoe>
+    private val _selectedShoe = MutableLiveData<Shoe?>()
+    val selectedShoe: LiveData<Shoe?>
         get() = _selectedShoe
     val selectedShoeSizeString = Transformations.map(selectedShoe) {
-        it.size.toString()
+        it?.size.toString()
     }
 
     private val _eventOnReturn = MutableLiveData<Boolean>()
@@ -64,6 +64,7 @@ class StoreViewModel : ViewModel() {
     fun onReturn() {
         Timber.i("OnReturn")
         _eventOnReturn.value = true
+        _selectedShoe.value = null
     }
 
     fun onReturnComplete() {
