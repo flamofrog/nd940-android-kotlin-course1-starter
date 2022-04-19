@@ -11,6 +11,7 @@
             type="com.udacity.shoestore.store.StoreViewModel" />
     </data>
 
+    <!--Constraint layout used to center content/ add padding where required-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,6 +23,9 @@
             app:layout_constraintBottom_toTopOf="@+id/save_button"
             app:layout_constraintTop_toTopOf="parent">
 
+            <!--I am using a constrain layouts here instead of a linear layout so I can have the
+             description input box take up the full length of the screen, whereas the other fields are in-line
+             with their labels. Although also possible using a linear layout, a constraint layout in this case is simpler.-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
